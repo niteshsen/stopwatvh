@@ -1,0 +1,146 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+        }
+        .maincontainer{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            background-image: url(https://img.freepik.com/premium-photo/dark-street-background-reflection-blue-red-neon-asphalt_129911-31.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            gap: 10px;
+        }
+
+        
+      .btn{
+          width: 120px;
+          height: 30px;
+          margin: 0 5px;
+          border: none;
+          outline: none;
+          border-radius: 5px;
+      }
+
+      #start{
+        background-color: #7FFF00;
+      }
+      #stop{
+        background-color:  crimson;
+      }
+      #reset{
+        background-color: coral;
+      }
+      
+.digit{
+    font-size: 75px;
+    color: #fff;
+}
+.text{
+    font-size: 35px;
+    color:#fff
+}
+
+    </style>
+</head>
+<body>
+    <div class="maincontainer">
+        <div class="firstpart">
+            <span  id= "hr" class="digit">00</span>
+            <span  class="text">Hr</span>
+            <span  id="min" class="digit">00</span>
+            <span  class="text">Min</span>
+            <span  id = "sec"class="digit">00</span>
+            <span class="text">Sec</span>
+            <span id = "milis" class="digit">00</span>
+        </div>
+        <div class="">
+            <button id="start"  class="btn" onclick="start()">Start</button>
+            <button id="stop" class="btn" onclick="stop()">Stop</button>
+            <button id="reset" class="btn" onclick="reset()">Reset</button>
+        </div>
+
+    </div>
+
+    <script>
+        const hr = document.getElementById("hr")
+        const min = document.getElementById("min")
+        const sec = document.getElementById("sec")
+        const milis = document.getElementById("milis")
+        const starts = document.getElementById("start")
+        const stops = document.getElementById("stop")
+        const resets = document.getElementById("reset")
+
+        var hour = 0 ;
+        var minute = 0 ;
+        var second = 0;
+        var milisecond = 0
+
+        var  timers = false;
+    
+        function start(){
+         timers = true
+         timer()
+        }
+
+        function stop(){
+            timers = false
+        }
+  
+        function reset(){
+           timers = false
+           milisecond= 0
+           var milString = "0"
+           milis.innerHTML = milisecond + milString
+           second = 0
+           sec.innerHTML = milString + second;
+           minute = 0
+           min.innerHTML = milString + minute
+           hour = 0
+           hr.innerText= milString + hour
+        }
+
+
+        function timer(){
+          if(timers === true){
+          milisecond = milisecond+1 
+          milis.innerHTML = milisecond;  
+          if(milisecond === 100){
+            milisecond = 0;
+            second = second+1
+            sec.innerHTML = second
+          }
+          if(second === 60){
+            second = 0;
+            minute = minute+1;
+            min.innerText= minute;
+          }
+          if(minute === 60){
+            minute = 0
+            hour = hour+1;
+            hr.innerHTML = hour
+
+          }
+            setTimeout("timer()", 10)
+          }
+        }
+
+
+    </script>
+</body>
+</html>
